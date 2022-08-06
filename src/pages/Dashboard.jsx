@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import BlogForm from "../components/BlogForm";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <div>
+      <BlogForm />
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

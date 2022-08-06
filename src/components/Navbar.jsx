@@ -8,7 +8,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { Link } from "react-router-dom";
-import cw from "../assets/cw.jpeg"
+import cw from "../assets/cw.jpeg";
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
@@ -33,9 +33,9 @@ export default function MenuAppBar() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <img style={{width:"40px"}} src={cw} alt="Clarusway" />
+            <img style={{ width: "40px" }} src={cw} alt="Clarusway" />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography style={{textAlign:"center", fontSize:"2rem"}} variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Fire Blog
             </Link>
