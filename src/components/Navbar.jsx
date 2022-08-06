@@ -4,10 +4,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { Link } from "react-router-dom";
+import cw from "../assets/cw.jpeg"
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
@@ -32,10 +33,12 @@ export default function MenuAppBar() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <img style={{width:"40px"}} src={cw} alt="Clarusway" />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              Fire Blog
+            </Link>
           </Typography>
           {auth && (
             <div>
@@ -64,8 +67,22 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-                <MenuItem onClick={handleClose}>Register</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="login"
+                  >
+                    Login
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="register"
+                  >
+                    Register
+                  </Link>
+                </MenuItem>
               </Menu>
             </div>
           )}
