@@ -22,6 +22,8 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  const currentUser = false;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -35,8 +37,20 @@ export default function MenuAppBar() {
           >
             <img style={{ width: "40px" }} src={cw} alt="Clarusway" />
           </IconButton>
-          <Typography style={{textAlign:"center", fontSize:"2rem"}} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+          <Typography
+            style={{ textAlign: "center", fontSize: "2rem" }}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          >
+            <Link
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontFamily: "Girassol",
+              }}
+              to="/"
+            >
               Fire Blog
             </Link>
           </Typography>
@@ -67,22 +81,54 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to="login"
-                  >
-                    Login
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to="register"
-                  >
-                    Register
-                  </Link>
-                </MenuItem>
+                {currentUser ? (
+                  <>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="profil"
+                      >
+                        Profil
+                      </Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="newblog"
+                      >
+                        New
+                      </Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="/"
+                      >
+                        Logout
+                      </Link>
+                    </MenuItem>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="login"
+                      >
+                        Login
+                      </Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="register"
+                      >
+                        Register
+                      </Link>
+                    </MenuItem>{" "}
+                  </>
+                )}
               </Menu>
             </div>
           )}
