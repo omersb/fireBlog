@@ -7,7 +7,7 @@ import Login from "../pages/Login";
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Navbar />
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
