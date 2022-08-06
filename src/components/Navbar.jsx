@@ -28,15 +28,18 @@ export default function MenuAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <img style={{ width: "40px" }} src={cw} alt="Clarusway" />
-          </IconButton>
+          <Link to="/">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <img style={{ width: "40px" }} src={cw} alt="Clarusway" />
+            </IconButton>
+          </Link>
+
           <Typography
             style={{ textAlign: "center", fontSize: "2rem" }}
             variant="h6"
@@ -86,7 +89,7 @@ export default function MenuAppBar() {
                     <MenuItem onClick={handleClose}>
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to="profil"
+                        to="/profil"
                       >
                         Profil
                       </Link>
@@ -94,7 +97,7 @@ export default function MenuAppBar() {
                     <MenuItem onClick={handleClose}>
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to="newblog"
+                        to="/newblog"
                       >
                         New
                       </Link>
@@ -114,7 +117,7 @@ export default function MenuAppBar() {
                     <MenuItem onClick={handleClose}>
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to="login"
+                        to="/login"
                       >
                         Login
                       </Link>
@@ -122,7 +125,7 @@ export default function MenuAppBar() {
                     <MenuItem onClick={handleClose}>
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
-                        to="register"
+                        to="/register"
                       >
                         Register
                       </Link>
