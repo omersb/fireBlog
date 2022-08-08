@@ -9,20 +9,20 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { Link } from "react-router-dom";
 import cw from "../assets/cw.jpeg";
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const { currentUser } = useContext(AuthContext);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  console.log(currentUser);
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const currentUser = false;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -113,7 +113,6 @@ export default function MenuAppBar() {
                   </>
                 ) : (
                   <>
-                    {" "}
                     <MenuItem onClick={handleClose}>
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
