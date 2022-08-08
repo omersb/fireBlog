@@ -147,7 +147,7 @@ export default function Register() {
               </Grid>
               <Grid item>
                 <Link to="/login" variant="body2">
-                  {"Don't have an account? Sign İn"}
+                  {"Do you have an account? Login"}
                 </Link>
               </Grid>
             </Grid>

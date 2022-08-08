@@ -12,7 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import google from "../assets/google.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { singIn } from "../helpers/firebase";
+import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -34,14 +36,15 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    singIn(email, password, navigate);
   };
 
   return (
@@ -95,6 +98,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -105,6 +110,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -118,33 +125,33 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outline"
-                sx={{ mb: 2, backgroundColor: "#eee" }}
-              >
-                Continue with
-                <img
-                  style={{ width: "80px", marginLeft: "10px" }}
-                  src={google}
-                  alt=""
-                />
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Typography component="a" href="#" variant="body2">
-                    Forgot password?
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Link to="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
+            <Button
+              type="submit"
+              fullWidth
+              variant="outline"
+              sx={{ mb: 2, backgroundColor: "#eee" }}
+            >
+              Continue with
+              <img
+                style={{ width: "80px", marginLeft: "10px" }}
+                src={google}
+                alt=""
+              />
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Typography component="a" href="#" variant="body2">
+                  Forgot password?
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Link to="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Grid>
       </Grid>
