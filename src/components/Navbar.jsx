@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import cw from "../assets/cw.jpeg";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
+import { logOut } from "../helpers/firebase";
 
 export default function MenuAppBar() {
   const [auth] = React.useState(true);
@@ -104,6 +105,7 @@ export default function MenuAppBar() {
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Link
+                        onClick={() => logOut()}
                         style={{ textDecoration: "none", color: "black" }}
                         to="/"
                       >
