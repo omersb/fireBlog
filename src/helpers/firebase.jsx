@@ -10,6 +10,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { getFirestore } from "@firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -87,7 +88,7 @@ export const signUpProvider = (navigate) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
-      navigate('/');
+      navigate("/");
       // toastSuccessNotify('Logged out successfully!');
     })
     .catch((error) => {
@@ -95,3 +96,7 @@ export const signUpProvider = (navigate) => {
       console.log(error);
     });
 };
+
+//***** DATABASE İŞLEMLERİ *****//
+
+export const db = getFirestore(app);
