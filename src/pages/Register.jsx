@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import google from "../assets/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createUser } from "../helpers/firebase";
+import { createUser, signUpProvider } from "../helpers/firebase";
 
 function Copyright(props) {
   return (
@@ -48,6 +48,9 @@ export default function Register() {
     createUser(email, password, name, navigate);
   };
 
+  const handleGoogle = () => {
+    signUpProvider(navigate);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -144,6 +147,7 @@ export default function Register() {
               fullWidth
               variant="outline"
               sx={{ mb: 2, backgroundColor: "#eee" }}
+              onClick={handleGoogle}
             >
               Continue with
               <img

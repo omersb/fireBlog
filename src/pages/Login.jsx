@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import google from "../assets/google.png";
 import { Link, useNavigate } from "react-router-dom";
-import { singIn } from "../helpers/firebase";
+import { signUpProvider, singIn } from "../helpers/firebase";
 import { useState } from "react";
 
 function Copyright(props) {
@@ -45,6 +45,10 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     singIn(email, password, navigate);
+  };
+  
+  const handleGoogle = () => {
+    signUpProvider(navigate);
   };
 
   return (
@@ -131,6 +135,7 @@ export default function Login() {
               fullWidth
               variant="outline"
               sx={{ mb: 2, backgroundColor: "#eee" }}
+              onClick={handleGoogle}
             >
               Continue with
               <img
