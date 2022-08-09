@@ -41,10 +41,11 @@ export default function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser(email, password, navigate);
+    createUser(email, password, name, navigate);
   };
 
   return (
@@ -89,6 +90,18 @@ export default function Register() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Name.."
+                name="name"
+                autoComplete="name"
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
               <TextField
                 margin="normal"
                 required

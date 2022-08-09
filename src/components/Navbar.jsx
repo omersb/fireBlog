@@ -14,7 +14,6 @@ import { useContext } from "react";
 import { logOut } from "../helpers/firebase";
 
 export default function MenuAppBar() {
-  const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { currentUser } = useContext(AuthContext);
   const handleMenu = (event) => {
@@ -40,7 +39,6 @@ export default function MenuAppBar() {
               <img style={{ width: "40px" }} src={cw} alt="Clarusway" />
             </IconButton>
           </Link>
-
           <Typography
             style={{ textAlign: "center", fontSize: "2rem" }}
             variant="h6"
@@ -58,84 +56,90 @@ export default function MenuAppBar() {
               Fire Blog
             </Link>
           </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {currentUser ? (
-                  <>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to="/profil"
-                      >
-                        Profil
-                      </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to="/newblog"
-                      >
-                        New
-                      </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        onClick={() => logOut()}
-                        style={{ textDecoration: "none", color: "black" }}
-                        to="/"
-                      >
-                        Logout
-                      </Link>
-                    </MenuItem>
-                  </>
-                ) : (
-                  <>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to="/login"
-                      >
-                        Login
-                      </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to="/register"
-                      >
-                        Register
-                      </Link>
-                    </MenuItem>{" "}
-                  </>
-                )}
-              </Menu>
-            </div>
+          {/* currentUser.email.split("@")[0] emailin ilk kısmını aldık */}
+          {currentUser && (
+            <Typography>
+              {currentUser.displayName
+                ? currentUser.displayName
+                : currentUser.email.split("@")[0]}
+            </Typography>
           )}
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {currentUser ? (
+                <>
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/profil"
+                    >
+                      Profil
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/newblog"
+                    >
+                      New
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      onClick={() => logOut()}
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/"
+                    >
+                      Logout
+                    </Link>
+                  </MenuItem>
+                </>
+              ) : (
+                <>
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </MenuItem>{" "}
+                </>
+              )}
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

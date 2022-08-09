@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,13 +26,16 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-export const createUser = async (email, password, navigate) => {
+export const createUser = async (email, password, name, navigate) => {
   try {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+    });
     navigate("/");
     console.log(userCredential);
   } catch (error) {
@@ -46,7 +50,7 @@ export const singIn = async (email, password, navigate) => {
       email,
       password
     );
-    navigate("/")
+    navigate("/");
     console.log(userCredential);
   } catch (error) {
     console.log(error);
