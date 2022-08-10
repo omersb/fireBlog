@@ -11,6 +11,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -100,3 +101,11 @@ export const signUpProvider = (navigate) => {
 //***** DATABASE İŞLEMLERİ *****//
 
 export const db = getFirestore(app);
+
+//** Read (veri alma) işlemi **//
+export const getBlogs = async () => {
+  const blogsRef = collection(db, "fireBlog");
+  const data = await getDocs(blogsRef);
+  return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  
+};

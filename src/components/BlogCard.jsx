@@ -20,24 +20,27 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function BlogCard({ blog }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  console.log(blog);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={blog.imgUrl}
         alt="Paella dish"
       />
       <CardContent>
+        <Typography variant="h5" color="black">
+          {blog.title}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
-          Yorum yazılacak
+          {blog.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
