@@ -14,7 +14,12 @@ const Dashboard = () => {
     <Box>
       <Typography
         variant="h3"
-        style={{ margin: "1rem", textAlign: "center", color: "#1976D2" }}
+        style={{
+          margin: "1rem",
+          textAlign: "center",
+          color: "#1976D2",
+          fontFamily: "Girassol",
+        }}
       >
         ──── DASHBORD ────
       </Typography>
