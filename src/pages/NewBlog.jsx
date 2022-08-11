@@ -1,8 +1,25 @@
 import { Box, Button, Card, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import blok from "../assets/blok.png";
+import { AuthContext } from "../contexts/AuthContext";
+import { createBlogs } from "../helpers/firebase";
 
 const NewBlog = () => {
+  const [title, setTitle] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [content, setContent] = useState("");
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const date = new Date().toUTCString().split(" ");
+    const date1 = date[2] + " " + date[1] + ", " + date[3];
+
+    createBlogs(title, imgUrl, content, currentUser.email, date1, navigate);
+  };
+
   return (
     <Box
       display="flex"
@@ -43,7 +60,12 @@ const NewBlog = () => {
         >
           ──── New Blog ────
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 1, p: 4 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{ mt: 1, p: 4 }}
+        >
           <TextField
             margin="normal"
             required
@@ -53,8 +75,8 @@ const NewBlog = () => {
             name="title"
             autoComplete="title"
             autoFocus
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             sx={{ mb: 3 }}
@@ -66,8 +88,8 @@ const NewBlog = () => {
             type="url"
             id="imgUrl"
             autoComplete="current-password"
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
           />
           <TextField
             id="outlined-multiline-static"
@@ -76,6 +98,8 @@ const NewBlog = () => {
             rows={9}
             required
             fullWidth
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
           <Button
             type="submit"

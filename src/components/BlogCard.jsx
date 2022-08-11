@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import { Box } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,19 +30,45 @@ export default function BlogCard({ blog }) {
   };
   console.log(blog);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="194"
-        image={blog.imgUrl}
-        alt="Paella dish"
-      />
+    <Card sx={{ width: 345, height: 450 }}>
+      <Box style={{ cursor: "pointer" }}>
+        <CardMedia
+          component="img"
+          height="194"
+          image={blog.imgUrl}
+          alt="Paella dish"
+        />
+        <CardContent sx={{ backgroundColor: "#f0f8ff" }}>
+          <Typography
+            sx={{ mb: 1, fontFamily: "Girassol" }}
+            variant="h5"
+            color="black"
+          >
+            {blog.title}
+          </Typography>
+          <Typography variant="p" color="#9b9b9b">
+            {blog.date}
+          </Typography>
+          <Typography
+            sx={{
+              mt: 1,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}
+            variant="body2"
+            color="black"
+          >
+            {blog.description}
+          </Typography>
+        </CardContent>
+      </Box>
       <CardContent>
-        <Typography variant="h5" color="black">
-          {blog.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {blog.description}
+        <AccountCircle sx={{ mr: 1 }} />
+        <Typography variant="p" color="black">
+          {blog.email}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

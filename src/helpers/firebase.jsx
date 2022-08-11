@@ -11,7 +11,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -101,11 +101,34 @@ export const signUpProvider = (navigate) => {
 //***** DATABASE İŞLEMLERİ *****//
 
 export const db = getFirestore(app);
+const blogsRef = collection(db, "fireBlog");
 
 //** Read (veri alma) işlemi **//
 export const getBlogs = async () => {
-  const blogsRef = collection(db, "fireBlog");
   const data = await getDocs(blogsRef);
   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  
+};
+
+//** Create (veri oluşturma) işlemi **//
+export const createBlogs = async (
+  title,
+  imgUrl,
+  content,
+  email,
+  date1,
+  navigate
+) => {
+  //! title:title ismi aynı ise title olarak yazıla bilir.
+  try {
+    await addDoc(blogsRef, {
+      title: title,
+      imgUrl: imgUrl,
+      description: content,
+      email,
+      date: date1,
+    });
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
 };

@@ -23,7 +23,15 @@ const Dashboard = () => {
       >
         ──── DASHBORD ────
       </Typography>
-      <Container>
+      <Container
+        style={{ gap: 50 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {blogs.map((blog) => (
           <BlogCard blog={blog} key={blog.id} />
         ))}
