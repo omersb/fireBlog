@@ -17,6 +17,7 @@ import {
   addDoc,
   doc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -140,7 +141,14 @@ export const createBlogs = async (
 };
 
 //** Update (veri güncelleme) işlemi **//
-
+export const updateBlog = async (id) => {
+  const blogDoc = doc(db, "fireBlog", id);
+  try {
+    await updateDoc(blogDoc, { title, imgUrl, description });
+  } catch (error) {
+    console.log(error);
+  }
+};
 //** Delete (veri silme) işlemi **//
 export const deleteBlog = async (id, navigate) => {
   const blogDoc = doc(db, "fireBlog", id);

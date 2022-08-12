@@ -76,7 +76,12 @@ const Details = () => {
       </Card>
       {blog.email === currentUser.email && (
         <Box sx={{ display: "flex", justifyContent: "space-evenly", mb: 8 }}>
-          <Button variant="contained">Update</Button>
+          <Button
+            variant="contained"
+            onClick={() => navigate(`/updateblog/${blog.id}`, { state: blog })}
+          >
+            Update
+          </Button>
           <Button
             variant="contained"
             sx={{ backgroundColor: "red" }}
