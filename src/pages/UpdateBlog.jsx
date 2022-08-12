@@ -1,10 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Card, TextField, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
-import blok from "../assets/blok.png";
-import { AuthContext } from "../contexts/AuthContext";
-import { createBlogs } from "../helpers/firebase";
+import { updateBlog } from "../helpers/firebase";
 const UpdateBlog = () => {
   //! navigate ile gonderilen state(veriyi) yakalamak icin ise
   //! useLocation Hook'u kullanilabilir.
@@ -16,6 +14,7 @@ const UpdateBlog = () => {
   const navigate = useNavigate();
   const handleUpdate = (e) => {
     e.preventDefault();
+    updateBlog(blog.id, title, imgUrl, content, navigate);
   };
 
   return (

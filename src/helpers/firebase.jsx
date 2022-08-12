@@ -141,14 +141,16 @@ export const createBlogs = async (
 };
 
 //** Update (veri güncelleme) işlemi **//
-export const updateBlog = async (id) => {
+export const updateBlog = async (id, title, imgUrl, content, navigate) => {
   const blogDoc = doc(db, "fireBlog", id);
   try {
-    await updateDoc(blogDoc, { title, imgUrl, description });
+    await updateDoc(blogDoc, { title, imgUrl, description: content });
+    navigate("/");
   } catch (error) {
     console.log(error);
   }
 };
+
 //** Delete (veri silme) işlemi **//
 export const deleteBlog = async (id, navigate) => {
   const blogDoc = doc(db, "fireBlog", id);
