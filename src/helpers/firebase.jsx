@@ -11,7 +11,13 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -127,6 +133,19 @@ export const createBlogs = async (
       email,
       date: date1,
     });
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//** Update (veri güncelleme) işlemi **//
+
+//** Delete (veri silme) işlemi **//
+export const deleteBlog = async (id, navigate) => {
+  const blogDoc = doc(db, "fireBlog", id);
+  try {
+    await deleteDoc(blogDoc);
     navigate("/");
   } catch (error) {
     console.log(error);
