@@ -95,9 +95,9 @@ export default function MenuAppBar() {
                   <MenuItem onClick={handleClose}>
                     <Link
                       style={{ textDecoration: "none", color: "black" }}
-                      to="/profil"
+                      to="/profile"
                     >
-                      Profil
+                      Profile
                     </Link>
                   </MenuItem>
                   <MenuItem onClick={handleClose}>
