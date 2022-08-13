@@ -8,6 +8,7 @@ import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import UpdateBlog from "../pages/UpdateBlog";
+import UpdateProfile from "../pages/UpdateProfile";
 import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
@@ -27,9 +28,14 @@ const AppRouter = () => {
         <Route path="/updateblog/:id" element={<PrivateRouter />}>
           <Route path="" element={<UpdateBlog />} />
         </Route>
-        <Route path="/profile" element={<PrivateRouter />}>
+        {/* <Route path="/profile" element={<PrivateRouter />}>
           <Route path="" element={<Profile />} />
-        </Route>
+        </Route> */}
+        {/* <Route path="/updateprofile/:uid" element={<PrivateRouter />}>
+          <Route path="" element={<UpdateProfile />} />
+        </Route> */}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/updateprofile/:uid" element={<UpdateProfile />} />
       </Routes>
     </BrowserRouter>
   );

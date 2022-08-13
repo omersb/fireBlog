@@ -54,6 +54,18 @@ export const createUser = async (email, password, name, navigate) => {
   }
 };
 
+export const updateUser = async (displayName, photoURL, navigate) => {
+  try {
+    await updateProfile(auth.currentUser, {
+      displayName,
+      photoURL,
+    });
+    navigate("/profile");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const singIn = async (email, password, navigate) => {
   try {
     let userCredential = await signInWithEmailAndPassword(
