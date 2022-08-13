@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import { Box } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ export default function BlogCard({ blog }) {
     <Card sx={{ width: 345, height: 450 }}>
       <Box
         style={{ cursor: "pointer" }}
-        onClick={() => navigate(`/details/${blog.id}`, {state: blog })}
+        onClick={() => navigate(`/details/${blog.id}`, { state: blog })}
       >
         <CardMedia
           component="img"
@@ -70,7 +70,9 @@ export default function BlogCard({ blog }) {
         </CardContent>
       </Box>
       <CardContent>
-        <AccountCircle sx={{ mr: 1 }} />
+        {/* <Avatar sx={{ color: "red" }} aria-label="recipe" src={} /> */}
+
+        {/* <AccountCircle sx={{ mr: 1 }} /> */}
         <Typography variant="p" color="black">
           {blog.email}
         </Typography>
