@@ -135,6 +135,9 @@ export const createBlogs = async (
   content,
   email,
   date1,
+  userPhoto,
+  likeCount,
+  likeCountUsers,
   navigate
 ) => {
   //! title:title ismi aynı ise title olarak yazıla bilir.
@@ -145,6 +148,9 @@ export const createBlogs = async (
       description: content,
       email,
       date: date1,
+      userPhoto,
+      likeCount,
+      likeCountUsers,
     });
     navigate("/");
   } catch (error) {
@@ -169,6 +175,15 @@ export const deleteBlog = async (id, navigate) => {
   try {
     await deleteDoc(blogDoc);
     navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateLike = async (id, likeCount) => {
+  const blogDoc = doc(db, "fireBlog", id);
+  try {
+    await updateDoc(blogDoc, { likeCount: likeCount + 1 });
   } catch (error) {
     console.log(error);
   }

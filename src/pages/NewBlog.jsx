@@ -16,8 +16,19 @@ const NewBlog = () => {
     e.preventDefault();
     const date = new Date().toUTCString().split(" ");
     const date1 = date[2] + " " + date[1] + ", " + date[3];
-
-    createBlogs(title, imgUrl, content, currentUser.email, date1, navigate);
+    const likeCount = +0;
+    const likeCountUsers = [];
+    createBlogs(
+      title,
+      imgUrl,
+      content,
+      currentUser.email,
+      date1,
+      currentUser.photoURL,
+      likeCount,
+      likeCountUsers,
+      navigate
+    );
   };
 
   return (

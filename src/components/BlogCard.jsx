@@ -9,8 +9,10 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import { Avatar, Box } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+import { updateLike } from "../helpers/firebase";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -26,12 +28,17 @@ const ExpandMore = styled((props) => {
 export default function BlogCard({ blog }) {
   const [expanded, setExpanded] = React.useState(false);
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleLike = () => {
+    const like = Number(blog.likeCount + 1);
+    updateLike(blog.id, like);
+  };
   console.log(blog);
   return (
-    <Card sx={{ width: 345, height: 450 }}>
+    <Card sx={{ width: 345, height: 470 }}>
       <Box
         style={{ cursor: "pointer" }}
         onClick={() => navigate(`/details/${blog.id}`, { state: blog })}
@@ -69,17 +76,20 @@ export default function BlogCard({ blog }) {
           </Typography>
         </CardContent>
       </Box>
-      <CardContent>
-        {/* <Avatar sx={{ color: "red" }} aria-label="recipe" src={} /> */}
-
-        {/* <AccountCircle sx={{ mr: 1 }} /> */}
+      <CardContent sx={{ display: "flex", alignItems: "center" }}>
+        <Avatar
+          sx={{ color: "red", mr: 1 }}
+          aria-label="recipe"
+          src={blog.userPhoto}
+        />
         <Typography variant="p" color="black">
           {blog.email}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon onClick={handleLike} />
+          <Typography sx={{ ml: 1 }}>{blog.likeCount}</Typography>
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
