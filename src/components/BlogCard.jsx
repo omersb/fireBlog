@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { updateLike } from "../helpers/firebase";
+import { useState } from "react";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,12 +30,19 @@ export default function BlogCard({ blog }) {
   const [expanded, setExpanded] = React.useState(false);
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  const [likeState, setLikeState] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   const handleLike = () => {
-    const like = Number(blog.likeCount + 1);
-    updateLike(blog.id, like);
+    if (currentUser) {
+      if (!likeState) {
+        const like = Number(blog.likeCount + 1);
+        updateLike(blog.id, like);
+      }
+    } else {
+      navigate("/login");
+    }
   };
   console.log(blog);
   return (

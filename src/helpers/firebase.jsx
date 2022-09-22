@@ -19,6 +19,7 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+// import { toastErrorNotify, toastSuccessNotify } from "./toastNotify";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -48,9 +49,9 @@ export const createUser = async (email, password, name, navigate) => {
       displayName: name,
     });
     navigate("/");
-    console.log(userCredential);
+    // toastSuccessNotify("New user successfully created.");
   } catch (error) {
-    console.log(error);
+    // toastErrorNotify(error.message);
   }
 };
 
@@ -61,8 +62,9 @@ export const updateUser = async (displayName, photoURL, navigate) => {
       photoURL,
     });
     navigate("/profile");
+    // toastSuccessNotify("Your profile has been updated.");
   } catch (error) {
-    console.log(error);
+    //  toastErrorNotify(error.message);
   }
 };
 
@@ -74,9 +76,9 @@ export const singIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
-    console.log(userCredential);
+    // toastSuccessNotify("Successfully logged in.");
   } catch (error) {
-    console.log(error);
+    // toastErrorNotify(error.message);
   }
 };
 
